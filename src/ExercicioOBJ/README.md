@@ -2,7 +2,7 @@
 ## Selecionando e aplicando transformações em objetos 3D
 
 **Disciplina:** Processamento Gráfico: Computação Gráfica e Aplicações – Unisinos  
-**Aluno(s):** _(coloque seu nome aqui)_
+**Aluno(s):** Cássio Braga, Gabriel Walber, Patrícia Nagel
 
 ---
 
