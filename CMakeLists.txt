@@ -47,8 +47,10 @@ set(EXERCISES
     Hello3D
     HelloCamera
     HelloOBJ
-    ExercicioOBJ
-    TrabalhoGrauA
+    HelloPhong
+    HelloCubemap
+    HelloCurves
+    # TrabalhoGrauA
 )
 
 add_compile_options(-Wno-pragmas)
