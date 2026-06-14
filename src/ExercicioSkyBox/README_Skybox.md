@@ -1,12 +1,13 @@
 # Exercício Grau B – Environment Mapping com Cube Mapping
 
 **Disciplina:** Computação Gráfica – Unisinos 2026/1  
+**Integrantes:** Cassio Braga, Gabriel Walber, Patricia Nagel
 
 ---
 
 ## Descrição
 
-Expansão do projeto HelloCubemap para adicionar **reflexão de ambiente dinâmica** nos objetos 3D da cena (Suzanne / cubo), integrando o resultado do Cubemap com iluminação local **Phong** via variável de refletividade.
+Expansão do projeto HelloCubemap para adicionar **reflexão de ambiente dinâmica** nos objetos 3D da cena (Suzanne), integrando o resultado do Cubemap com iluminação local **Phong** via variável de refletividade.
 
 ### Requisitos implementados
 
@@ -19,69 +20,16 @@ Expansão do projeto HelloCubemap para adicionar **reflexão de ambiente dinâmi
 
 ---
 
-## Estrutura de pastas esperada
+## Compilação e execução
 
-```
-projeto/
-├── ExercicioSkybox.cpp   ← código principal
-├── Camera.h / Camera.cpp ← câmera da disciplina
-├── stb_image.h           ← https://github.com/nothings/stb
-└── assets/
-    ├── skybox/
-    │   ├── right.jpg
-    │   ├── left.jpg
-    │   ├── top.jpg
-    │   ├── bottom.jpg
-    │   ├── front.jpg
-    │   └── back.jpg
-    └── Modelos3D/
-        └── suzanne.obj
-```
-
-> **Cubemaps gratuitos:** [LearnOpenGL – Skyboxes](https://learnopengl.com/Advanced-OpenGL/Cubemaps) disponibiliza o pacote `skybox.zip` com as 6 faces JPG prontas.
-
----
-
-## Compilação
-
-### Linux / macOS (g++)
+1. Abra a pasta do projeto no VS Code
+2. Use **CMake: Build** (Ctrl+Shift+P → "CMake: Build") para compilar
+3. No terminal, vá até a pasta `build` e execute:
 
 ```bash
-g++ ExercicioSkybox.cpp Camera.cpp \
-    -o ExercicioSkybox \
-    -lglfw -lGL -ldl -lpthread \
-    -I/usr/include   # ajuste para o seu sistema
-```
-
-### Windows (MinGW / MSYS2)
-
-```bash
-g++ ExercicioSkybox.cpp Camera.cpp \
-    -o ExercicioSkybox.exe \
-    -lglfw3 -lopengl32 -lgdi32
-```
-
-### CMake (recomendado)
-
-```cmake
-cmake_minimum_required(VERSION 3.10)
-project(ExercicioSkybox)
-set(CMAKE_CXX_STANDARD 17)
-
-find_package(OpenGL REQUIRED)
-find_package(glfw3  REQUIRED)
-
-add_executable(ExercicioSkybox ExercicioSkybox.cpp Camera.cpp)
-target_link_libraries(ExercicioSkybox OpenGL::GL glfw ${CMAKE_DL_LIBS})
-```
-
-```bash
-mkdir build && cd build
-cmake .. && cmake --build .
+cd build
 ./ExercicioSkybox
 ```
-
-> **Obs.:** `glad.c` (ou `glad.cpp`) precisa ser compilado junto se não usar a versão de header-only. Adicione-o na lista de fontes do `add_executable`.
 
 ---
 
@@ -115,7 +63,7 @@ vec3 phongColor = (ambient + diffuse + specular) * objectColor;
 // 2. Reflexão: vetor I = câmera→fragmento, R = reflect(I, normal)
 vec3 I = normalize(FragPos - cameraPos);
 vec3 R = reflect(I, norm);
-vec3 envColor = texture(skybox, R).rgb;   // amostra o cubemap
+vec3 envColor = texture(skybox, R).rgb;
 
 // 3. Mistura controlada
 vec3 finalColor = mix(phongColor, envColor, reflectivity);
@@ -131,5 +79,5 @@ A matriz `view` é passada **sem a componente de translação** (`mat4(mat3(view
 
 ## Referências
 
-- LearnOpenGL – [Cubemaps](https://learnopengl.com/Advanced-OpenGL/Cubemaps)  
+- LearnOpenGL – [Cubemaps](https://learnopengl.com/Advanced-OpenGL/Cubemaps)
 - Möller, T. et al. *Real-Time Rendering*, 4ª ed. CRC Press, 2018. Cap. 10.
