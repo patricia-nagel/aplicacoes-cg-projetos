@@ -51,6 +51,7 @@ set(EXERCISES
     HelloCubemap
     HelloCurves
     # TrabalhoGrauA
+    ExercicioSkyBox
 )
 
 add_compile_options(-Wno-pragmas)
