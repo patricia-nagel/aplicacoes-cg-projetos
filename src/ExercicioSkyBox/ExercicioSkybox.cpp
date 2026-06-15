@@ -7,15 +7,15 @@
  *  3. Integração com iluminação local (Phong): mix(corPhong, corSkybox, reflectivity)
  *
  * Controles:
- *  W/A/S/D        — movimenta a câmera
- *  Mouse           — olha ao redor (clique na janela para capturar)
- *  X / Y / Z      — rotaciona o objeto nos eixos
- *  +   / -         — aumenta / diminui a refletividade (0.0 … 1.0)
- *  ESC             — fecha a janela
+ *  W/A/S/D        movimenta a câmera
+ *  Mouse          olha ao redor (clique na janela para capturar)
+ *  X / Y / Z      rotaciona o objeto nos eixos
+ *  +   / -        aumenta / diminui a refletividade (0.0 … 1.0)
+ *  ESC            fecha a janela
  *
  * Dependências: GLAD, GLFW3, GLM, stb_image.h
  *
- * Caminhos dos recursos esperados (ajuste se necessário):
+ * Caminhos dos recursos esperados:
  *  Cubemap:  ../assets/skybox/{right,left,top,bottom,front,back}.jpg
  *  Modelo:   ../assets/Modelos3D/suzanne.obj
  */
@@ -231,7 +231,7 @@ int main()
 
     glfwSetKeyCallback(window, key_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
-    // mouse NÃO capturado por padrão; pressione M para ativar (veja key_callback)
+    // mouse NÃO capturado por padrão; pressione M para ativar
 
     // ---- GLAD ----
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -305,7 +305,7 @@ int main()
     glUniform3fv(glGetUniformLocation(objShader, "objectColor"),1, glm::value_ptr(objColor));
 
     cout << "\n=== CONTROLES ===" << endl;
-    cout << "W/A/S/D  — movimenta a câmera" << endl;
+    cout << "W/A/S/D  — movimenta a camera" << endl;
     cout << "M        — ativa/desativa captura do mouse para olhar ao redor" << endl;
     cout << "X/Y/Z    — rotaciona o objeto" << endl;
     cout << "+  / -   — aumenta/diminui refletividade (atual: 0.50)" << endl;
